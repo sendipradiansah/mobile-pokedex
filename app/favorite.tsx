@@ -1,4 +1,4 @@
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Text } from "react-native";
 import { Stack } from "expo-router";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState, useEffect } from "react";
@@ -39,6 +39,7 @@ export default function Favorite() {
         <ScrollView>
           <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 10 }}>
           {
+            listFavorite.length > 0 ? 
             listFavorite.map((item: any, index: number) => {
               return(
                 <View key={index} style={{ flexDirection: 'row', width: '48.5%'}}>
@@ -46,6 +47,8 @@ export default function Favorite() {
                 </View>
                 )
               })
+              :
+              <Text style={{ fontSize: 16, fontWeight: '500', color: 'gray' }}>There is no list of favorite pokemon.</Text>
             }
             </View>
         </ScrollView>

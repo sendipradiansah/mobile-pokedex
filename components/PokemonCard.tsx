@@ -15,7 +15,7 @@ export default function PokemonCard({ name }: PokemonCardProps ) {
 
 
   const { data, isLoading, error } = useQuery({ queryKey: ['pokemon', name], queryFn: async () => {
-    const data = await getPokemon(name);
+    const data = await getPokemon(name.toLowerCase());
     // console.log('POKEMON', data);
     return data;
     }

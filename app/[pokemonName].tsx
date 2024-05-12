@@ -79,7 +79,7 @@ export default function PokemonDetails() {
 
 
     const getDataFavorite = async () => {
-      
+        
         try{
             // getItem data
             const pokemonGet = await AsyncStorage.getItem('favorite');
@@ -112,27 +112,37 @@ export default function PokemonDetails() {
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 20, alignItems: 'center' }}>
                         <Text style={{ fontSize: 30, fontWeight: '800', color: '#5b5b5b' }}>{data.name.toUpperCase().charAt(0) + data.name.slice(1)}</Text>
                         {
-                            listFavorite.map((item: any, index: number) => {
-                                return(
-                                    !showFavourite && (item.name !== data.name)?
-                                    <Pressable key={index} style={{ position: 'absolute', right: 0, marginRight: 12, marginTop: 10 }} onPress={() => {toggleVisibility(); storeDataFavorite()}} >
-                                        <AntDesign name="hearto" size={20} color="black" />
-                                    </Pressable>
-                                    :
-                                    <Pressable key={index} style={{ position: 'absolute', right: 0, marginRight: 12, marginTop: 10 }}>
-                                        <AntDesign name="heart" size={24} color="black" />
-                                    </Pressable>
-                                )
-                            })
+                            listFavorite.length > 0 ? 
+                                listFavorite.map((item: any, index: number) => {
+                                    return(
+                                        (!showFavourite && (item.name !== data.name)) ?
+                                        <Pressable key={index} style={{ position: 'absolute', right: 0, marginRight: 12, marginTop: 10 }} onPress={() => {toggleVisibility(); storeDataFavorite()}} >
+                                            <AntDesign name="hearto" size={20} color="black" />
+                                        </Pressable>
+                                        :
+                                        <Pressable key={index} style={{ position: 'absolute', right: 0, marginRight: 12, marginTop: 10 }}>
+                                            <AntDesign name="heart" size={24} color="black" />
+                                        </Pressable>
+                                    )
+                                })
+                            :
+                                !showFavourite ?
+                                <Pressable  style={{ position: 'absolute', right: 0, marginRight: 12, marginTop: 10 }} onPress={() => {toggleVisibility(); storeDataFavorite()}} >
+                                    <AntDesign name="hearto" size={20} color="black" />
+                                </Pressable>
+                                :
+                                <Pressable  style={{ position: 'absolute', right: 0, marginRight: 12, marginTop: 10 }}>
+                                    <AntDesign name="heart" size={24} color="black" />
+                                </Pressable>
                         }
                     </View>
                     <View style={{ marginTop: 10 }}>
                         <Text style={{ fontSize: 20, color: '#38761d', fontWeight: '800'}}>Sprite Gallery</Text>
                         <View style={{ marginTop: 20, marginBottom: 20, flexDirection: 'row', gap: 15, flexWrap: 'wrap', justifyContent: 'center' }}>
-                            <Image source={{ uri: data.sprites.front_default}} style={{ width: 160, height: 140, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
-                            <Image source={{ uri: data.sprites.back_default}} style={{ width: 160, height: 140, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
-                            <Image source={{ uri: data.sprites.front_shiny}} style={{ width: 160, height: 140, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
-                            <Image source={{ uri: data.sprites.back_shiny}} style={{ width: 160, height: 140, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
+                            <Image source={{ uri: data.sprites.front_default}} style={{ width: 140, height: 120, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
+                            <Image source={{ uri: data.sprites.back_default}} style={{ width: 140, height: 120, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
+                            <Image source={{ uri: data.sprites.front_shiny}} style={{ width: 140, height: 120, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
+                            <Image source={{ uri: data.sprites.back_shiny}} style={{ width: 140, height: 120, objectFit: 'cover', borderWidth: 1, borderColor: 'gray', borderRadius: 8 }}/>       
                         </View>
                     </View>
                     <View style={{ marginBottom: 40 }}>
